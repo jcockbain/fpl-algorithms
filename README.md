@@ -13,7 +13,7 @@ Uses a [bounded-knapsack](https://en.wikipedia.org/wiki/Knapsack_problem) style 
 #### Usage
 
 ```bash
-python select_team.py {defenders} {midfielders} {attackers} {budget} {metric}
+python select_team.py {goalkeepers} {defenders} {midfielders} {attackers} {budget} {metric}
 
 # e.g
 python select_team.py 2 5 5 3 100 form
