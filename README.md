@@ -2,6 +2,8 @@
 
 Algorithms used to assist with [Fantasy Premier League](https://fantasy.premierleague.com/).
 
+I need all the help I can get.
+
 Uses this [FPL Python Wrapper](https://fpl.readthedocs.io/en/latest/).
 
 ## Scripts
