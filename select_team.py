@@ -13,16 +13,22 @@ def get_number_of_players_to_search(positions):
 
 
 def get_value_from_metric(player, metric):
-    switcher = {
-        "form": player.form,
-        "value_season": player.value_season,
-        "ict_index": player.ict_index,
-        "total_points": player.total_points,
-        "goals_scored": player.goals_scored,
-        "dreamteam_count": player.dreamteam_count,
-        "cost_change_start": player.cost_change_start,
-    }
-    return float(switcher[metric])
+    if metric == "form":
+        return float(player.form)
+    elif metric == "value_season":
+        return float(player.value_season)
+    elif metric == "ict_index":
+        return float(player.ict_index)
+    elif metric == "total_points":
+        return float(player.total_points)
+    elif metric == "goals_scored":
+        return float(player.goals_scored)
+    elif metric == "dreamteam_count":
+        return float(player.dreamteam_count)
+    elif metric == "cost_change_start":
+        return float(player.cost_change_start)
+    else:
+        raise Exception("Invalid metric")
 
 
 async def main(positions, budget, metric):
@@ -34,12 +40,9 @@ async def main(positions, budget, metric):
 
     players_to_search = get_number_of_players_to_search(positions)
 
-    performers = [
-        player
-        for player in sorted(
-            players, key=lambda x: get_value_from_metric(x, metric), reverse=True
-        )
-    ]
+    performers = sorted(
+        players, key=lambda x: get_value_from_metric(x, metric), reverse=True
+    )
 
     top_keepers, top_defenders, top_midfielders, top_attackers = [], [], [], []
     positions = [top_keepers, top_defenders, top_midfielders, top_attackers]
@@ -55,12 +58,13 @@ async def main(positions, budget, metric):
 
     keepers, defenders, midfielders, attackers, max_team = [], [], [], [], []
     max_score = 0
+    top_performers_length = len(top_performers)
 
     def get_form_team(budget, player_idx, score):
         nonlocal max_score
         nonlocal max_team
 
-        if player_idx == len(top_performers):
+        if player_idx == top_performers_length:
             return
 
         if budget < 0:
