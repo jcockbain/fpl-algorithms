@@ -58,12 +58,13 @@ async def main(positions, budget, metric):
 
     keepers, defenders, midfielders, attackers, max_team = [], [], [], [], []
     max_score = 0
+    top_performers_length = len(top_performers)
 
     def get_form_team(budget, player_idx, score):
         nonlocal max_score
         nonlocal max_team
 
-        if player_idx == len(top_performers):
+        if player_idx == top_performers_length:
             return
 
         if budget < 0:
