@@ -40,12 +40,9 @@ async def main(positions, budget, metric):
 
     players_to_search = get_number_of_players_to_search(positions)
 
-    performers = [
-        player
-        for player in sorted(
-            players, key=lambda x: get_value_from_metric(x, metric), reverse=True
-        )
-    ]
+    performers = sorted(
+        players, key=lambda x: get_value_from_metric(x, metric), reverse=True
+    )
 
     top_keepers, top_defenders, top_midfielders, top_attackers = [], [], [], []
     positions = [top_keepers, top_defenders, top_midfielders, top_attackers]
